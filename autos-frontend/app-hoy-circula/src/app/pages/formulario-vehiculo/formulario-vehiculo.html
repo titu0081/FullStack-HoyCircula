@@ -1,0 +1,124 @@
+<section
+  class="d-flex p-4 flex-column h-100 paginaPrincipal align-items-center"
+>
+  <div class="formularioAutos">
+    <div class="text-center tituloFormulario">
+      <h1>{{ tituloPagina }}</h1>
+      <hr class="m-1" />
+    </div>
+
+    <form
+      class="d-flex px-4 pb-3 flex-column w-100 needs-validation"
+      [formGroup]="formularioVehiculo"
+      (ngSubmit)="guardarVehiculo()"
+    >
+      <div class="mb-3 w-100">
+        <label class="form-label">Placa:</label>
+        <input
+          class="form-control"
+          formControlName="placa"
+          [ngClass]="{'is-invalid': placa?.invalid && (placa?.dirty || placa?.touched) }"
+          required
+          [maxlength]="placaMaxLength"
+        />
+        @if(placa?.hasError('required') && (placa?.dirty || placa?.touched)) {
+        <small class="invalid-feedback"
+          >La placa es obligatoria. (Ej: ABC-1234)</small
+        >
+        } @if(placa?.hasError('minlength') ) {
+        <small class="invalid-feedback"
+          >La placa debe tener 8 caracteres. (Ej: ABC-1234)</small
+        >
+        }
+      </div>
+
+      <div class="mb-3 w-100">
+        <label class="form-label">Modelo:</label>
+        <input
+          class="form-control"
+          formControlName="modelo"
+          [ngClass]="{'is-invalid': modelo?.invalid && (modelo?.dirty || modelo?.touched) }"
+        />
+        @if(modelo?.hasError('required') && (modelo?.dirty || modelo?.touched))
+        {
+        <small class="invalid-feedback">El modelo es obligatorio.</small>
+        }
+      </div>
+
+      <div class="mb-3 w-100">
+        <label class="form-label">Año del Modelo:</label>
+        <input
+          type="number"
+          class="form-control"
+          formControlName="anio_modelo"
+          [ngClass]="{'is-invalid': anio_modelo?.invalid && (anio_modelo?.dirty || anio_modelo?.touched) }"
+          [maxlength]="anioModeloMaxLength"
+        />
+        @if(anio_modelo?.hasError('required') && (anio_modelo?.dirty ||
+        anio_modelo?.touched)) {
+        <small class="invalid-feedback"
+          >El año del modelo es obligatorio.</small
+        >
+        }
+      </div>
+
+      <div class="mb-3 w-100">
+        <label class="form-label">Color:</label>
+        <input
+          class="form-control"
+          formControlName="color"
+          [ngClass]="{'is-invalid': color?.invalid && (color?.dirty || color?.touched) }"
+        />
+        @if(color?.hasError('required') && (color?.dirty || color?.touched)) {
+        <small class="invalid-feedback">El color es obligatorio.</small>
+        }
+      </div>
+
+      <div class="mb-3 w-100">
+        <label class="form-label">Chasis:</label>
+        <input
+          class="form-control"
+          formControlName="chasis"
+          [ngClass]="{'is-invalid': chasis?.invalid && (chasis?.dirty || chasis?.touched) }"
+          [maxlength]="chasisMaxLength"
+        />
+        @if(chasis?.hasError('required') && (chasis?.dirty || chasis?.touched))
+        {
+        <small class="invalid-feedback">El chasis es obligatorio.</small>
+        }
+      </div>
+
+      <div class="mb-3 w-100">
+        <label class="form-label">Propietario:</label>
+        <input
+          class="form-control"
+          formControlName="propietario"
+          [ngClass]="{'is-invalid': propietario?.invalid && (propietario?.dirty || propietario?.touched) }"
+        />
+        @if(propietario?.hasError('required') && (propietario?.dirty ||
+        propietario?.touched)) {
+        <small class="invalid-feedback">El propietario es obligatorio.</small>
+        }
+      </div>
+
+      <div
+        class="d-flex gap-2 justify-content-center w-100 flex-wrap flex-md-nowrap mt-2"
+      >
+        <button
+          class="btn btn-danger w-50"
+          (click)="volverPaginaPrincipal()"
+          type="button"
+        >
+          <i class="bi bi-x-circle"></i> Cancelar
+        </button>
+        <button
+          class="btn btn-primary w-50"
+          type="submit"
+          [disabled]="formularioVehiculo.invalid"
+        >
+          <i class="bi bi-floppy"></i> {{nombreBoton}}
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

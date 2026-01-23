@@ -1,0 +1,19 @@
+.formularioAutos {
+  flex: 1;
+  overflow: auto;
+  background-color: #f8f9fa;
+  border-radius: 15px;
+  width: 90%;
+}
+
+.tituloFormulario {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: #f8f9fa; // 🔥 CLAVE
+  padding: 0.2rem 0;
+}
+
+.paginaPrincipal {
+  overflow: hidden;
+}

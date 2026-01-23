@@ -1,0 +1,15 @@
+.tablaAutos {
+  flex: 1;
+  overflow: auto;
+
+  thead {
+    position: sticky;
+    top: 0;
+    background-color: #f8f9fa;
+    z-index: 100;
+  }
+}
+
+.paginaPrincipal {
+  overflow: hidden;
+}
