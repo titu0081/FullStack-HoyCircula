@@ -29,13 +29,13 @@ module.exports = {
 			});
 
 			if (autoEncontrado) {
-				return { codigo: 0, data: autoEncontrado, error: "" };
+				return { codigo: 0, data: [autoEncontrado], error: "" };
 			} else {
-				return { codigo: -1, data: null, error: "Auto no encontrado" };
+				return { codigo: -1, data: [], error: "Auto no encontrado" };
 			}
 		} catch (error) {
 			console.error("❌ Error en consultarAutosXId:", error);
-			return { codigo: -1, data: null, error: error.message };
+			return { codigo: -1, data: [], error: error.message };
 		}
 	},
 
@@ -47,7 +47,7 @@ module.exports = {
 			console.log(elemento);
 			const result = await repository.save(autoData);
 			if (result) {
-				return { codigo: 0, data: result, error: "" };
+				return { codigo: 0, data: [result], error: "" };
 			} else {
 				return {
 					codigo: -1,
@@ -68,7 +68,7 @@ module.exports = {
 			const result = await repository.save(autoData);
 
 			if (result) {
-				return { codigo: 0, data: result, error: "" };
+				return { codigo: 0, data: [result], error: "" };
 			} else {
 				return {
 					codigo: -1,
@@ -84,15 +84,18 @@ module.exports = {
 	async eliminarAuto(ctx) {
 		try {
 			const repository = ctx.service.dataSource.getRepository(auto);
-			const { id_auto } = ctx.params;
-			const eliminarAuto = await repository.findOneBy({ id_auto });
-			if (eliminarAuto) {
-				return { codigo: 0, data: eliminarAuto, error: "" };
+			const id = Number(ctx.params.id);
+			const autoEncontrado = await repository.findOneBy({
+				id_auto: id,
+			});
+			if (autoEncontrado) {
+				await repository.remove(autoEncontrado);
+				return { codigo: 0, data: [autoEncontrado], error: "" };
 			} else {
 				return {
 					codigo: -1,
 					data: [],
-					error: "No se elimino el auto",
+					error: "Auto no encontrado",
 				};
 			}
 		} catch (error) {

@@ -23,7 +23,9 @@ module.exports = {
 				method: "GET",
 				path: "/consultarAutosXId/:id",
 			},
-			params: {},
+			params: {
+				id: { type: "number", convert: true },
+			},
 			async handler(ctx) {
 				let result = await autoLogic.consultarAutosXId(ctx);
 				return result;
@@ -57,9 +59,11 @@ module.exports = {
 		eliminarAuto: {
 			rest: {
 				method: "DELETE",
-				path: "/eliminarAuto",
+				path: "/eliminarAuto/:id",
 			},
-			params: {},
+			params: {
+				id: { type: "number", convert: true },
+			},
 			async handler(ctx) {
 				let result = await autoLogic.eliminarAuto(ctx);
 				return result;

@@ -11,5 +11,18 @@
 }
 
 .paginaPrincipal {
+  height: 100vh;
   overflow: hidden;
+}
+
+.paginaAutos {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+
+  background-color: #f8f9fa;
+  border-radius: 15px;
+  width: 100%;
+
+  min-height: 0;
 }

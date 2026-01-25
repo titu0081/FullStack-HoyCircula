@@ -30,13 +30,17 @@ module.exports = {
 			});
 
 			if (diaRestriccionEncontrado) {
-				return { codigo: 0, data: diaRestriccionEncontrado, error: "" };
+				return {
+					codigo: 0,
+					data: [diaRestriccionEncontrado],
+					error: "",
+				};
 			} else {
-				return { codigo: -1, data: null, error: "Auto no encontrado" };
+				return { codigo: -1, data: [], error: "Auto no encontrado" };
 			}
 		} catch (error) {
 			console.error("❌ Error en consultarAutosXId:", error);
-			return { codigo: -1, data: null, error: error.message };
+			return { codigo: -1, data: [], error: error.message };
 		}
 	},
 
@@ -49,7 +53,7 @@ module.exports = {
 			console.log(elemento);
 			const result = await repository.save(diaRestriccionData);
 			if (result) {
-				return { codigo: 0, data: result, error: "" };
+				return { codigo: 0, data: [result], error: "" };
 			} else {
 				return {
 					codigo: -1,
@@ -71,7 +75,7 @@ module.exports = {
 			const result = await repository.save(diaRestriccionData);
 
 			if (result) {
-				return { codigo: 0, data: result, error: "" };
+				return { codigo: 0, data: [result], error: "" };
 			} else {
 				return {
 					codigo: -1,
@@ -88,17 +92,22 @@ module.exports = {
 		try {
 			const repository =
 				ctx.service.dataSource.getRepository(dia_restriccion);
-			const { id_dia_restriccion } = ctx.params;
-			const eliminarDiaRestriccion = await repository.findOneBy({
-				id_dia_restriccion,
+			const id = Number(ctx.params.id);
+			const diaRestriccionEncontrado = await repository.findOneBy({
+				id_dias: id,
 			});
-			if (eliminarDiaRestriccion) {
-				return { codigo: 0, data: eliminarDiaRestriccion, error: "" };
+			if (diaRestriccionEncontrado) {
+				await repository.remove(diaRestriccionEncontrado);
+				return {
+					codigo: 0,
+					data: [diaRestriccionEncontrado],
+					error: "",
+				};
 			} else {
 				return {
 					codigo: -1,
 					data: [],
-					error: "No se elimino el dia envíado",
+					error: "Día de restricción no encontrado",
 				};
 			}
 		} catch (error) {

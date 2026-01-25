@@ -2,17 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import {
-  Vehiculo,
-  VehiculoRespuesta,
-  VehiculoOperacionRespuesta,
-} from '../model/vehiculo.model';
+import { Vehiculo, VehiculoRespuesta } from '../model/vehiculo.model';
 
 @Injectable({ providedIn: 'root' })
 export class ServiciosVehiculo {
   constructor(private http: HttpClient) {}
 
   private ruta: string = environment.apiUrl + '/auto';
+  private rutaHorario: string = environment.apiUrl + '/horario';
 
   servicioGet(complemento: string): Observable<VehiculoRespuesta> {
     return this.http.get<VehiculoRespuesta>(`${this.ruta}${complemento}`);
@@ -21,8 +18,8 @@ export class ServiciosVehiculo {
   servicioPost(
     complemento: string,
     vehiculo: Vehiculo,
-  ): Observable<VehiculoOperacionRespuesta> {
-    return this.http.post<VehiculoOperacionRespuesta>(
+  ): Observable<VehiculoRespuesta> {
+    return this.http.post<VehiculoRespuesta>(
       `${this.ruta}${complemento}`,
       vehiculo,
     );
@@ -30,21 +27,30 @@ export class ServiciosVehiculo {
 
   servicioPut(
     complemento: string,
-    id: string,
     vehiculo: Partial<Vehiculo>,
-  ): Observable<VehiculoOperacionRespuesta> {
-    return this.http.put<VehiculoOperacionRespuesta>(
-      `${this.ruta}${complemento}/${id}`,
+  ): Observable<VehiculoRespuesta> {
+    return this.http.put<VehiculoRespuesta>(
+      `${this.ruta}${complemento}`,
       vehiculo,
     );
   }
 
   servicioDelete(
     complemento: string,
-    id: string,
-  ): Observable<VehiculoOperacionRespuesta> {
-    return this.http.delete<VehiculoOperacionRespuesta>(
+    id: number,
+  ): Observable<VehiculoRespuesta> {
+    return this.http.delete<VehiculoRespuesta>(
       `${this.ruta}${complemento}/${id}`,
+    );
+  }
+
+  servicioPostHorario(
+    complemento: string,
+    horarioCircula: horarioConsulta,
+  ): Observable<hoyCircula> {
+    return this.http.post<hoyCircula>(
+      `${this.rutaHorario}${complemento}`,
+      horarioCircula,
     );
   }
 }

@@ -65,5 +65,17 @@ module.exports = {
 				return result;
 			},
 		},
+
+		consultarHorarioHoyCircula: {
+			rest: {
+				method: "POST",
+				path: "/consultarHoyCircula",
+			},
+			params: {},
+			async handler(ctx) {
+				let result = await horarioLogic.consultarHorarioHoyCircula(ctx);
+				return result;
+			},
+		},
 	},
 };

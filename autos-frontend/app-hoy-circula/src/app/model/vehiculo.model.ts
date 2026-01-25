@@ -13,9 +13,3 @@ export interface VehiculoRespuesta {
   data: Vehiculo[];
   error: string | null;
 }
-
-export interface VehiculoOperacionRespuesta {
-  codigo: number;
-  data: Vehiculo;
-  error: string | null;
-}

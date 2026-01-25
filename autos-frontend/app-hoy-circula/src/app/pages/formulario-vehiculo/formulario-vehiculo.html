@@ -23,11 +23,15 @@
         />
         @if(placa?.hasError('required') && (placa?.dirty || placa?.touched)) {
         <small class="invalid-feedback"
-          >La placa es obligatoria. (Ej: ABC-1234)</small
+          >La placa es obligatoria. (Ej: ABC1234)</small
         >
         } @if(placa?.hasError('minlength') ) {
         <small class="invalid-feedback"
-          >La placa debe tener 8 caracteres. (Ej: ABC-1234)</small
+          >La placa debe tener 8 caracteres. (Ej: ABC1234)</small
+        >
+        }@if(placa?.hasError('maxlength') ) {
+        <small class="invalid-feedback"
+          >La placa debe tener 8 caracteres. (Ej: ABC1234)</small
         >
         }
       </div>
@@ -84,6 +88,8 @@
         />
         @if(chasis?.hasError('required') && (chasis?.dirty || chasis?.touched))
         {
+        <small class="invalid-feedback">El chasis es obligatorio.</small>
+        } @if(chasis?.hasError('maxlength')) {
         <small class="invalid-feedback">El chasis es obligatorio.</small>
         }
       </div>
