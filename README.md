@@ -10,7 +10,7 @@ La base de datos utilizada es MICROSOFT SQL SERVER.
 
 ## Iniciar los servicios autos-backend
 El backend tiene una arquitectura de microservicios donde cada servicio llama a su respectiva funcionalidad (microservicio). La estructura es la siguiente:
-  - service: Servicio que redirige a lo que requiere la petición.
+  - services: Servicio que redirige a lo que requiere la petición.
   - logic: Microservicio que se encarga de realizar lo que se requiera.
   - model: Modelos tomados de la base de datos para realizar las respectivas consultas.
   - mixin: Conexión a la base de datos con SQL SERVER 
