@@ -1,15 +1,21 @@
 # APP-HOY-CIRCULA
 
 ## Creación de la base de datos
+La base de datos utilizada es MICROSOFT SQL SERVER.
 1. Se encuentra el archivo autoDB.bak que es un backup que es un respaldo de la base de datos, o a su vez existe el script de creación de las tablas con sus respectivos datos.
   ### Restaurar base de datos
 1. Abrir SQL Server Management Studio
 2. Restaurar base de datos desde el archivo `autoDB.bak`
 3. Verificar que la base se llame `autoDB`
 
-
 ## Iniciar los servicios autos-backend
-El backend esta realizo con Node.js y Moleculer con las siguientes versiones:
+El backend tiene una arquitectura de microservicios donde cada servicio llama a su respectiva funcionalidad (microservicio). La estructura es la siguiente:
+  - service: Servicio que redirige a lo que requiere la petición.
+  - logic: Microservicio que se encarga de realizar lo que se requiera.
+  - model: Modelos tomados de la base de datos para realizar las respectivas consultas.
+  - mixin: Conexión a la base de datos con SQL SERVER 
+  
+Se realizó con Node.js y Moleculer con las siguientes versiones:
   .Node.js: 20.19.02
   -Moleculer: 0.14.26v
 Iniciar el proyecto:
