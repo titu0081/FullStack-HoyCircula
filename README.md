@@ -16,6 +16,7 @@ Iniciar el proyecto:
   1. Es necesario instalar las dependencias con el comando: npm install
   2. Iniciar el proyecto con el comando: npm run dev
   3. El archivo de conexión a la base de datos esta en el `.env` que contiene lo siguiente:
+     
     db_server=servidor
     db_port=puerto
     db_user=usuario
@@ -31,6 +32,7 @@ Iniciar el proyecto:
   1. Es necesario instalar las dependencias con el comando: npm install
   2. Iniciar el proyecto con el comando: ng serve o npm start
   3. La tuta de conexion al backend esta en environments/environment.ts que contiene lo siguiente:
+     
      export const environment = {
       apiUrl: 'http://localhost:3000/api',
      };
