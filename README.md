@@ -30,14 +30,14 @@ Iniciar el proyecto:
     db_database=base_datos
 
 ## Iniciar el frontend APP-HOY-CIRCULA
-El frontend esta realizo con el framework Angular con las siguiente version:
+El frontend esta realizado con el framework Angular con las siguiente version:
   - Angular: 20.3.16 (versión del framework/core)
   - Angular CLI: 20.3.15 (versión de la herramienta de línea de comandos)
   
 Iniciar el proyecto:
   1. Es necesario instalar las dependencias con el comando: npm install
   2. Iniciar el proyecto con el comando: ng serve o npm start
-  3. La tuta de conexion al backend esta en environments/environment.ts que contiene lo siguiente:
+  3. La ruta de conexión al backend esta en environments/environment.ts que contiene lo siguiente:
     
     export const environment = {
       apiUrl: 'http://localhost:3000/api',
